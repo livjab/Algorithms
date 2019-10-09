@@ -1,10 +1,24 @@
 #!/usr/bin/python
-#git branch
 
 import argparse
 
 def find_max_profit(prices):
-  pass
+
+    price_profits = []
+    buy_index = 0
+    sell_index = buy_index + 1
+
+    while buy_index < (len(prices) -1):
+
+      if sell_index < len(prices):
+        price_profits.append(prices[sell_index] - prices[buy_index])
+        sell_index +=1
+
+      else:
+        buy_index +=1
+        sell_index = buy_index + 1
+
+    return max(price_profits)
 
 
 if __name__ == '__main__':
