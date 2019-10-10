@@ -3,10 +3,46 @@
 import sys
 
 # The cache parameter is here for if you want to implement
-# a solution that is more efficient than the naive 
+# a solution that is more efficient than the naive
 # recursive solution
+
 def eating_cookies(n, cache=None):
-  pass
+    if n < 0:
+        return 0
+    elif n == 0:
+        return 1
+    elif cache and cache[n] > 0:
+        return cache[n]
+    else:
+        if not cache:
+            cache = {i: 0 for i in range(n+1)}
+
+        cache[n] = eating_cookies(n-1, cache) + eating_cookies(n-2, cache) + eating_cookies(n-3, cache)
+        return cache[n]
+
+"""
+      cache = {}
+def dynamic_fib(n):
+    global cache
+    if n < 2:
+        return n
+    elif n in cache:
+        return cache[n]
+    else:
+        cache[n] = dynamic_fib(n - 1) + dynamic_fib(n - 2)
+        return cache[n]
+
+def fib(n):
+    if n < 2:
+        return n
+    else:
+        return fib(n - 1) + fib(n - 2)
+
+print(dynamic_fib(900))
+print(fib(32))
+
+print(cache)
+"""
 
 if __name__ == "__main__":
   if len(sys.argv) > 1:
